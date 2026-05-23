@@ -1,19 +1,15 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
-import { PageLoader } from './components/PageLoader';
+import Home from './pages/Home';
+import CollectionDetail from './pages/CollectionDetail';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { BriefAbout } from './components/BriefAbout';
-import { Collections } from './components/Collections';
-import { Products } from './components/Products';
-import { BestSellers } from './components/BestSellers';
-import { Reviews } from './components/Reviews';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
 import { CartDrawer } from './components/CartDrawer';
 import { QuickViewModal } from './components/QuickViewModal';
 import { CheckoutModal } from './components/CheckoutModal';
+import { PageLoader } from './components/PageLoader';
+import { Footer } from './components/Footer';
 
 const MainLayout: React.FC = () => {
   const { dir } = useApp();
@@ -30,20 +26,15 @@ const MainLayout: React.FC = () => {
       {/* Sticky Header */}
       <Navbar />
 
-      {/* Layout Main Blocks */}
-      <main>
-        <Hero />
-        <BriefAbout />
-        <Collections />
-        <Products />
-        <BestSellers />
-        <Reviews />
-        <Contact />
-      </main>
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/collection/:collectionId" element={<CollectionDetail />} />
+      </Routes>
 
-      {/* Footer Area */}
+      {/* Footer */}
       <Footer />
-      
+
       {/* Global Overlays & Drawer Popups */}
       <SearchModal />
       <CartDrawer />

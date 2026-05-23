@@ -13,6 +13,7 @@ export interface Product {
   oldPrice?: number;
   rating: number;
   image: string;
+  images?: string[]; // Multiple images for gallery/carousel
   category: string;
   saleBadge?: { en: string; ar: string };
   isNew?: boolean;
@@ -142,39 +143,26 @@ const createProducts = (): Product[] => {
     },
     sofas: {
       name: [
-        { en: "Modern Beige Sofa", ar: "كنبة بيج عصرية" },
-        { en: "Velvet Chesterfield Sofa", ar: "كنبة تشيسترفيلد مخملية" },
-        { en: "Minimalist L-Shape Sectional", ar: "كنبة زاوية مبسطة" },
-        { en: "Boucle Accent Sofa", ar: "كنبة بوكليه مميزة" },
-        { en: "Luxury Leather Recliner", ar: "كرسي جلد فاخر مستلقي" },
-        { en: "Classic Tufted Loveseat", ar: "كنبة ثنائية منجدة كلاسيكية" },
-        { en: "Contemporary Curved Lounge", ar: "أريكة منحنية معاصرة" },
-        { en: "Dark Wood Frame Daybed", ar: "سرير نهاري بإطار خشبي داكن" },
-        { en: "Mid-Century Modern Sofa", ar: "كنبة منتصف القرن عصرية" },
-        { en: "Sleek Corduroy Sectional", ar: "كنبة زاوية قطيفة مضلعة" },
-        { en: "Modular Living Room Couch", ar: "كنبة معيشة موديولار قابلة للتشكيل" },
-        { en: "Italian Grain Leather Sofa", ar: "كنبة جلد إيطالي فاخر" },
-        { en: "Deep Seating Cozy Couch", ar: "كنبة وثيرية ذات عمق مريح" },
-        { en: "Minimal Gold Leg Sofa", ar: "كنبة بأرجل ذهبية ناعمة" },
-        { en: "Emerald Velvet Setpiece", ar: "كنبة مخملية زمردية فاخرة" },
-        { en: "Scandinavian Fabric Sofa", ar: "كنبة قماشية اسكندنافية" },
-        { en: "Artisan Wood trim Sofa", ar: "كنبة بحواف خشبية يدوية" },
-        { en: "Plush Reclining Sectional", ar: "كنبة زاوية مستلقية فخمة" },
-        { en: "Luxury Lounge Chaise", ar: "شيزلونج استرخاء فاخر" },
-        { en: "Imperial Tufted Sofa Set", ar: "طقم كنب توكسيدو إمبراطوري" }
+        { en: "Sofa 2 Seats", ar: "كنبة بمقعدين" },
+        { en: "Sofa 3 Seats", ar: "كنبة بثلاثة مقاعد" }
       ],
       desc: [
-        { en: "Sink-in comfort with high-density foam cushions and neutral tone linen.", ar: "راحة فائقة مع وسائد إسفنجية عالية الكثافة وقماش كتان بلون محايد." },
-        { en: "Iconic design featuring deep tufting, rolled arms, and rich velvet.", ar: "تصميم أيقوني يتميز بتنجيد عميق، أذرع ملفوفة، ومخمل غني." },
-        { en: "Sleek L-shaped sofa designed to fit perfectly in modern open spaces.", ar: "كنبة زاوية أنيقة مصممة لتناسب المساحات المفتوحة الحديثة تماماً." },
-        { en: "Textured boucle fabric paired with a warm dark-wood foundation.", ar: "قماش بوكليه محكم الملمس مقترن بقاعدة خشبية داكنة دافئة." },
-        { en: "Premium top-grain leather with electronic smooth reclining mechanisms.", ar: "جلد فاخر طبيعي مع آليات استلقاء إلكترونية سلسة." }
+        { en: "Premium luxury 2-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بمقعدين مع تصميم أنيق وراحة استثنائية." },
+        { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
       ],
       imgs: [
-        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+        [
+          "/sofa-2.avif",
+          "/sofa-2-1.avif",
+          "/sofa-2-2.avif"
+        ],
+        [
+          "/sofa-1.avif",
+          "/sofa-1-2.avif",
+          "/sofa-1-3.avif",
+          "/sofa-1-4.avif",
+          "/sofa-1-5.avif"
+        ]
       ],
       basePrice: 2200
     },
@@ -474,12 +462,21 @@ const createProducts = (): Product[] => {
   // Loop through 10 collections
   Object.keys(designTemplates).forEach((colId) => {
     const template = designTemplates[colId];
-    
-    // Generate 20 items per collection
-    for (let i = 0; i < 20; i++) {
+
+    // For sofas, number of items equals number of image-sets; for others, generate 20 items
+    const itemCount = colId === 'sofas' && Array.isArray(template.imgs[0]) ? template.imgs.length : (colId === 'sofas' ? 1 : 20);
+
+    // Generate items per collection
+    for (let i = 0; i < itemCount; i++) {
       const nameObj = template.name[i] || template.name[0];
       const descObj = template.desc[i % template.desc.length];
-      const image = template.imgs[i % template.imgs.length];
+      // support imgs being either array of strings or array of image-sets (arrays)
+      let image: string;
+      if (colId === 'sofas' && Array.isArray(template.imgs[0])) {
+        image = template.imgs[i % template.imgs.length][0];
+      } else {
+        image = template.imgs[i % template.imgs.length];
+      }
       
       const price = Math.round(template.basePrice * (0.75 + (i * 0.08)));
       // Make some items have discount (around 30% of items)
@@ -531,6 +528,7 @@ const createProducts = (): Product[] => {
         oldPrice,
         rating,
         image,
+        images: colId === 'sofas' && Array.isArray(template.imgs[0]) ? template.imgs[i % template.imgs.length] : (colId === 'sofas' ? (Array.isArray(template.imgs) ? (template.imgs as any) : undefined) : undefined),
         category: colId,
         saleBadge,
         isNew,

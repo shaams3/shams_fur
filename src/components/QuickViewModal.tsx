@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../context/AppContext';
-import { IoCloseOutline, IoHeart, IoHeartOutline, IoStar } from 'react-icons/io5';
+import { IoCloseOutline, IoHeart, IoHeartOutline, IoStar, IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
 
 export const QuickViewModal: React.FC = () => {
   const {
@@ -16,12 +16,14 @@ export const QuickViewModal: React.FC = () => {
 
   const [selectedColor, setSelectedColor] = useState('');
   const [qty, setQty] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Set default color when product changes
   useEffect(() => {
     if (quickViewProduct) {
       setSelectedColor(quickViewProduct.details.colors[0] || '#C5A880');
       setQty(1);
+      setCurrentImageIndex(0);
     }
   }, [quickViewProduct]);
 
@@ -66,11 +68,63 @@ export const QuickViewModal: React.FC = () => {
 
           {/* Left: Product Image Panel */}
           <div className="relative w-full md:w-1/2 bg-primary-beige flex items-center justify-center min-h-[300px] md:min-h-[480px]">
-            <img
-              src={prod.image}
-              alt={prod.name[lang]}
-              className="w-full h-full object-cover"
-            />
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIndex}
+                src={prod.images ? prod.images[currentImageIndex] : prod.image}
+                alt={prod.name[lang]}
+                className="w-full h-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </AnimatePresence>
+
+            {/* Navigation buttons for multiple images */}
+            {prod.images && prod.images.length > 1 && (
+              <>
+                <button
+                  onClick={() =>
+                    setCurrentImageIndex((idx) =>
+                      idx === 0 ? prod.images!.length - 1 : idx - 1
+                    )
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-darkWood p-2 rounded-full shadow-lg transition-all duration-200"
+                  aria-label="Previous image"
+                >
+                  <IoChevronBackOutline size={20} />
+                </button>
+                <button
+                  onClick={() =>
+                    setCurrentImageIndex((idx) =>
+                      idx === prod.images!.length - 1 ? 0 : idx + 1
+                    )
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white text-darkWood p-2 rounded-full shadow-lg transition-all duration-200"
+                  aria-label="Next image"
+                >
+                  <IoChevronForwardOutline size={20} />
+                </button>
+
+                {/* Image indicators */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                  {prod.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentImageIndex
+                          ? 'bg-primary-gold w-6'
+                          : 'bg-white/50 w-1.5 hover:bg-white/80'
+                      }`}
+                      aria-label={`Image ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
             {/* Sale Badge */}
             {prod.saleBadge && (
               <span className="absolute top-4 left-4 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded tracking-wider">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 import { collections } from '../data/mockData';
@@ -63,12 +64,12 @@ export const Collections: React.FC = () => {
 
                   {/* Explore Button Slide-up */}
                   <div className="mt-4 overflow-hidden h-0 group-hover:h-8 transition-all duration-300 ease-in-out">
-                    <a
-                      href="#products"
+                    <Link
+                      to={`/collection/${col.id}`}
                       className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary-gold hover:text-white transition-colors duration-200"
                     >
                       {lang === 'ar' ? 'اكتشف المجموعة ←' : 'Explore Collection →'}
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
