@@ -50,25 +50,23 @@ export const BriefAbout: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* Back Golden frame decoration */}
-            <div className="absolute -top-4 -left-4 w-full h-full border border-primary-gold/30 rounded-lg -z-10 translate-x-2 translate-y-2 pointer-events-none" />
-            
-            {/* Primary Image */}
-            <div className="w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl">
+            {/* Outer glow ring */}
+            <div className="absolute -top-6 -left-6 w-[calc(100%+3rem)] h-[calc(100%+3rem)] rounded-2xl border border-primary-gold/20 pointer-events-none" />
+            {/* Inner gold frame */}
+            <div className="absolute -top-3 -left-3 w-[calc(100%+1.5rem)] h-[calc(100%+1.5rem)] rounded-xl border border-primary-gold/40 pointer-events-none" />
+
+            {/* Shams Brand Logo Image — fills the panel */}
+            <div className="w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl bg-[#FFF0B3] flex items-center justify-center">
               <img
-                src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?auto=format&fit=crop&w=800&q=80"
-                alt="Shams Craftsmanship workshop wood carving"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                src="/shams-logo.jpg"
+                alt="Shams Furniture — للأثاث المنزلي والمكتبي"
+                className="w-full h-full object-contain p-6 transition-transform duration-700 hover:scale-105"
               />
             </div>
 
-            {/* Overlapping secondary photo */}
-            <div className="absolute -bottom-10 -right-6 md:-right-10 w-44 md:w-56 h-36 md:h-44 border-4 border-primary-lightBeige rounded-lg overflow-hidden shadow-xl hidden sm:block">
-              <img
-                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80"
-                alt="Luxury Material Selection"
-                className="w-full h-full object-cover"
-              />
+            {/* Gold badge pinned to bottom-right corner */}
+            <div className="absolute -bottom-5 -right-5 bg-darkWood border-2 border-primary-gold text-primary-gold text-[10px] tracking-widest font-serifEn uppercase px-5 py-2.5 rounded-lg shadow-xl">
+              Est. 2010
             </div>
           </motion.div>
 

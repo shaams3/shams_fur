@@ -110,7 +110,7 @@ export const Contact: React.FC = () => {
             {/* Premium quick-chat social buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-8 border-t border-primary-gold/10">
               <a
-                href="https://wa.me/201060754575"
+                href="https://wa.me/201118917224"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white py-3.5 px-6 rounded font-semibold transition-all duration-300 shadow-sm hover:shadow-md"
@@ -119,7 +119,7 @@ export const Contact: React.FC = () => {
                 <span className="text-xs uppercase tracking-wider font-serifEn">WhatsApp Chat</span>
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100063788211001"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 bg-[#1877F2] hover:bg-[#1565cd] text-white py-3.5 px-6 rounded font-semibold transition-all duration-300 shadow-sm hover:shadow-md"
@@ -194,8 +194,8 @@ export const Contact: React.FC = () => {
                   <h4 className="text-sm font-semibold text-darkWood uppercase tracking-wider">
                     {lang === 'ar' ? 'اتصل بنا مباشرة' : 'Direct Line'}
                   </h4>
-                  <p className="text-xs text-charcoal/70 mt-1 font-serifEn">
-                    +20 106 075 4575
+                  <p className="text-xs text-charcoal/70 mt-1 font-serifEn" dir="ltr">
+                    +20 111 891 7224
                   </p>
                 </div>
               </div>

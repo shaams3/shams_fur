@@ -37,7 +37,9 @@ export const Footer: React.FC = () => {
             {/* Social Icons list */}
             <div className="flex gap-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=100063788211001"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 hover:bg-primary-gold text-white hover:text-darkWood flex items-center justify-center transition-all duration-300"
                 aria-label="Facebook link"
               >
@@ -51,7 +53,9 @@ export const Footer: React.FC = () => {
                 <IoLogoInstagram size={18} />
               </a>
               <a
-                href="https://wa.me/201060754575"
+                href="https://wa.me/201118917224"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/5 hover:bg-primary-gold text-white hover:text-darkWood flex items-center justify-center transition-all duration-300"
                 aria-label="WhatsApp link"
               >
