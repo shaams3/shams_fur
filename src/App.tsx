@@ -6,10 +6,8 @@ import { Hero } from './components/Hero';
 import { BriefAbout } from './components/BriefAbout';
 import { Collections } from './components/Collections';
 import { Products } from './components/Products';
-import { WhyChooseUs } from './components/WhyChooseUs';
 import { BestSellers } from './components/BestSellers';
 import { Reviews } from './components/Reviews';
-import { InstagramGallery } from './components/InstagramGallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
@@ -38,10 +36,8 @@ const MainLayout: React.FC = () => {
         <BriefAbout />
         <Collections />
         <Products />
-        <WhyChooseUs />
         <BestSellers />
         <Reviews />
-        <InstagramGallery />
         <Contact />
       </main>
 
