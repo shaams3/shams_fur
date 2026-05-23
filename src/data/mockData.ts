@@ -204,40 +204,32 @@ const createProducts = (): Product[] => {
       basePrice: 1500
     },
     "tv-units": {
-      name: [
-        { en: "Minimalist Floating TV Stand", ar: "طاولة تلفزيون معلقة بسيطة" },
-        { en: "Luxury Marble Media Console", ar: "خزانة وسائط رخامية فاخرة" },
-        { en: "Dark Wood Slatted TV Unit", ar: "وحدة تلفزيون خشبية مضلعة داكنة" },
-        { en: "Gold Accent Entertainment Center", ar: "طاولة تلفزيون بلمسات ذهبية" },
-        { en: "Modern Glossy Media Console", ar: "وحدة وسائط حديثة لامعة" },
-        { en: "Mid-Century TV Console", ar: "طاولة تلفزيون منتصف القرن" },
-        { en: "Rustic Oak Entertainment Stand", ar: "طاولة تلفزيون بلوط ريفي" },
-        { en: "Contemporary Glass Door Console", ar: "خزانة وسائط بأبواب زجاجية" },
-        { en: "Luxury Stone Face TV Console", ar: "طاولة تلفاز بواجهة حجرية فاخرة" },
-        { en: "Minimalist White & Gold Unit", ar: "وحدة تلفاز بيضاء وذهبية بسيطة" },
-        { en: "Curved Wood Media Credenza", ar: "خزانة وسائط خشبية منحنية" },
-        { en: "LED Integrated TV Console", ar: "طاولة تلفزيون بإضاءة LED مدمجة" },
-        { en: "Compact Media Console Stand", ar: "طاولة تلفزيون مدمجة للوسائط" },
-        { en: "Industrial Metal Frame Unit", ar: "وحدة تلفزيون بإطار معدني" },
-        { en: "Luxury Brass Plated Panel Unit", ar: "وحدة تلفاز بلوحة نحاسية فاخرة" },
-        { en: "Walnut Floating Shelf Unit", ar: "وحدة رفوف جوز معلقة" },
-        { en: "Grand Media Wall Storage Unit", ar: "خزانة حائط كبيرة لوحدات الوسائط" },
-        { en: "Retro Lowline Media Bench", ar: "مقعد وسائط منخفض كلاسيكي" },
-        { en: "Fluted Glass TV Credenza", ar: "طاولة تلفاز بزجاج مضلع" },
-        { en: "Symmetric Walnut TV Set", ar: "طقم تلفزيون متماثل من خشب الجوز" }
+       name: [
+        { en: "Sofa 2 Seats", ar: "كنبة بمقعدين" },
+        { en: "Sofa 3 Seats", ar: "كنبة بثلاثة مقاعد" },
+        { en: "Sofa 3 Seats", ar: "كنبة بثلاثة مقاعد" }
       ],
       desc: [
-        { en: "Clean lines and hidden cable pathways for a wireless wall look.", ar: "خطوط نظيفة ومسارات كابلات مخفية لمظهر جداري خالي من الأسلاك." },
-        { en: "Beautiful Spanish white marble surface paired with dark oak veneer.", ar: "سطح رخامي أبيض إسباني جميل مقترن بقشرة بلوط داكنة." },
-        { en: "Textured vertical slats provide infrared compatibility for remotes.", ar: "توفر الألواح الرأسية ذات الملمس البارز توافقاً مع أجهزة التحكم عن بعد." },
-        { en: "Double sliding gold-mesh doors with internal tempered glass shelves.", ar: "أبواب مزدوجة من الشبك الذهبي المنزلق مع رفوف داخلية من الزجاج المقسى." },
-        { en: "Spacious luxury console containing heavy-duty push-to-open drawer rails.", ar: "خزانة فاخرة واسعة تحتوي على قضبان أدراج شديدة التحمل تفتح بالضغط." }
+        { en: "Premium luxury 2-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بمقعدين مع تصميم أنيق وراحة استثنائية." },
+        { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." },
+        { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
       ],
       imgs: [
-        "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+        [
+          "/tv-1.avif",
+          "/tv-1-2.avif",
+          "/tv-1-3.avif"
+        ],
+        [
+          "/tv-2-1.avif",
+          "/tv-2.avif",
+        ],
+        [
+          "/tv-3-1.avif",
+          "/tv-3.avif",
+        ]
       ],
-      basePrice: 1100
+      basePrice: 2200
     },
     office: {
       name: [
