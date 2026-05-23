@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-beige: #F5F2EB;
+    --primary-lightBeige: #FAF8F5;
+    --primary-gold: #C5A880;
+    --primary-accentGold: #D4AF37;
+    --dark-wood: #1E1611;
+    --charcoal: #2C2C2C;
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FAF8F5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C5A880;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #A88D65;
+  }
+
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+/* Custom Utilities and Patterns */
+.glass-nav {
+  background: rgba(30, 22, 17, 0.85); /* Dark wood background with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+}
+
+.glass-nav-light {
+  background: rgba(250, 248, 245, 0.85); /* Light beige with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+}
+
+.glass-card {
+  background: rgba(250, 248, 245, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 168, 128, 0.1);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #EAD6B3 0%, #C5A880 50%, #9B7E58 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #EAD6B3 0%, #C5A880 50%, #9B7E58 100%);
+}
+
+.wood-gradient-bg {
+  background: linear-gradient(135deg, #2E221A 0%, #1E1611 100%);
+}
+
+/* Font switches based on HTML lang */
+html[lang="ar"] {
+  font-family: 'Cairo', 'Amiri', system-ui, -apple-system, sans-serif;
+}
+
+html[lang="en"] {
+  font-family: 'Montserrat', 'Cormorant Garamond', system-ui, -apple-system, sans-serif;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #EAE5DB 25%, #F5F2EB 50%, #EAE5DB 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Fancy golden glow */
+.gold-glow {
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.3);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Custom styled masonry grids */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 1.5rem;
+}
