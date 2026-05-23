@@ -151,18 +151,15 @@ const createProducts = (): Product[] => {
         { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
       ],
       imgs: [
-        [
-          "/sofa-2.avif",
-          "/sofa-2-1.avif",
-          "/sofa-2-2.avif"
-        ],
-        [
-          "/sofa-1.avif",
-          "/sofa-1-2.avif",
-          "/sofa-1-3.avif",
-          "/sofa-1-4.avif",
-          "/sofa-1-5.avif"
-        ]
+  "/sofa-2.avif",
+  "/sofa-2-1.avif",
+  "/sofa-2-2.avif",
+  "/sofa-1.avif",
+  "/sofa-1-2.avif",
+  "/sofa-1-3.avif",
+  "/sofa-1-4.avif",
+  "/sofa-1-5.avif"
+            
       ],
       basePrice: 2200
     },
@@ -215,19 +212,15 @@ const createProducts = (): Product[] => {
         { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
       ],
       imgs: [
-        [
+        
           "/tv-1.avif",
           "/tv-1-2.avif",
-          "/tv-1-3.avif"
-        ],
-        [
+          "/tv-1-3.avif",
           "/tv-2-1.avif",
           "/tv-2.avif",
-        ],
-        [
           "/tv-3-1.avif",
           "/tv-3.avif",
-        ]
+        
       ],
       basePrice: 2200
     },
