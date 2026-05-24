@@ -168,40 +168,17 @@ const createProducts = (): Product[] => {
     },
     dining: {
       name: [
-        { en: "Marble Dining Table", ar: "طاولة طعام رخام" },
-        { en: "Walnut Wood Dinner Table", ar: "طاولة طعام خشب جوز" },
-        { en: "Velvet Dining Chair Deluxe", ar: "كرسي طعام مخملي فاخر" },
-        { en: "Luxury Sideboard Buffet", ar: "بوفيه جانبي فاخر" },
-        { en: "Gold Leg Dining Suite", ar: "طقم طعام بأرجل ذهبية" },
-        { en: "Glass Top Round Table", ar: "طاولة مستديرة بسطح زجاجي" },
-        { en: "Mid-Century Dining Chairs", ar: "كراسي طعام منتصف القرن" },
-        { en: "Modern Oak Sideboard", ar: "خزانة جانبية بلوط حديثة" },
-        { en: "Extendable Dining Table", ar: "طاولة طعام قابلة للتمديد" },
-        { en: "Polished Travertine Table", ar: "طاولة حجر ترافرتين مصقول" },
-        { en: "Minimalist Bench Seating", ar: "مقعد طعام طويل مبسط" },
-        { en: "Leather Upholstered Chair", ar: "كرسي طعام منجد بالجلد" },
-        { en: "Sunburst Veneer Table", ar: "طاولة طعام بقشرة خشبية دائرية" },
-        { en: "Luxury Display Credenza", ar: "خزانة عرض فاخرة" },
-        { en: "High-back Dining Chair", ar: "كرسي طعام بظهر مرتفع" },
-        { en: "Industrial Metal Accent Table", ar: "طاولة طعام معدنية صناعية" },
-        { en: "Geometric Base Dinner Table", ar: "طاولة طعام بقاعدة هندسية" },
-        { en: "Artisan Carved Credenza", ar: "بوفيه منحوت يدوياً" },
-        { en: "Luxury Gold-trimmed Buffet", ar: "بوفيه فاخر بحواف ذهبية" },
-        { en: "Royal 8-Seater Dining Set", ar: "طقم طعام ملكي لثمانية أفراد" }
+        { en: "Dining Table", ar: "طاولة طعام" }
       ],
       desc: [
-        { en: "Genuine Calacatta marble slab seated on double brass pillars.", ar: "لوح رخام كالاكاتا أصلي يستقر على عمودين من النحاس الأصفر." },
-        { en: "Rich walnut veneer showing organic grain with gold geometric inlay.", ar: "قشرة خشب جوز غنية تظهر عروقاً عضوية مع ترصيع هندسي ذهبي." },
-        { en: "Comfy dining chair with quilted velvet back and slender gold legs.", ar: "كرسي طعام مريح بظهر مخملي مبطن وأرجل ذهبية نحيفة." },
-        { en: "Spacious storage buffet with gold fluted panels and wood finish.", ar: "بوفيه تخزين واسع مع ألواح مضلعة ذهبية وتشطيب خشبي." },
-        { en: "Sleek dining set that balances modern minimalist angles and warm materials.", ar: "طقم طعام أنيق يوازن بين الزوايا المبسطة والمواد الدافئة." }
+        { en: "Premium luxury dining table with elegant design and exceptional craftsmanship.", ar: "طاولة طعام فاخرة مع تصميم أنيق وحرفية استثنائية." }
       ],
       imgs: [
-        "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&w=800&q=80"
+        [
+          "/dining-1.jpg"
+        ]
       ],
-      basePrice: 1500
+      basePrice: 2500
     },
     "tv-units": {
       name: [
@@ -465,10 +442,11 @@ const createProducts = (): Product[] => {
       const descObj = template.desc[i % template.desc.length];
       // support imgs being either array of strings or array of image-sets (arrays)
       let image: string;
+      const imgItem = template.imgs[i % template.imgs.length];
       if (isMultiImageCollection) {
-        image = template.imgs[i % template.imgs.length][0];
+        image = Array.isArray(imgItem) ? imgItem[0] : imgItem;
       } else {
-        image = template.imgs[i % template.imgs.length];
+        image = Array.isArray(imgItem) ? imgItem[0] : imgItem;
       }
       
       const price = Math.round(template.basePrice * (0.75 + (i * 0.08)));
@@ -521,7 +499,7 @@ const createProducts = (): Product[] => {
         oldPrice,
         rating,
         image,
-        images: isMultiImageCollection ? template.imgs[i % template.imgs.length] : undefined,
+        images: isMultiImageCollection && Array.isArray(imgItem) ? imgItem : undefined,
         category: colId,
         saleBadge,
         isNew,
