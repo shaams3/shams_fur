@@ -51,13 +51,13 @@ export const CollectionDetail: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-primary-lightBeige">
         <div className="text-center">
           <h1 className="text-2xl font-serifEn font-bold text-darkWood mb-4">
-            {t.notFound || 'Collection not found'}
+            {lang === 'ar' ? 'المجموعة غير موجودة' : 'Collection not found'}
           </h1>
           <Link
             to="/"
             className="text-primary-gold hover:text-primary-gold/80 transition-colors"
           >
-            {t.backHome || 'Back to home'}
+            {lang === 'ar' ? 'العودة للرئيسية' : 'Back to home'}
           </Link>
         </div>
       </div>
@@ -81,7 +81,7 @@ export const CollectionDetail: React.FC = () => {
             className="absolute top-8 left-8 flex items-center gap-2 text-primary-gold hover:text-white transition-colors"
           >
             <IoArrowBack size={20} />
-            <span className="text-sm font-semibold">{t.back || 'Back'}</span>
+            <span className="text-sm font-semibold">{lang === 'ar' ? 'رجوع' : 'Back'}</span>
           </Link>
 
           <h1 className="text-4xl md:text-5xl font-serifEn font-bold text-center mb-2">
