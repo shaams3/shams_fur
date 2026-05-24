@@ -102,7 +102,7 @@ export const collections: Collection[] = [
 const createProducts = (): Product[] => {
   const list: Product[] = [];
   
-  const designTemplates: Record<string, { name: {en: string, ar: string}[], desc: {en: string, ar: string}[], imgs: string[], basePrice: number }> = {
+  const designTemplates: Record<string, { name: {en: string, ar: string}[], desc: {en: string, ar: string}[], imgs: (string | string[])[], basePrice: number }> = {
     bedrooms: {
       name: [
         { en: "Royal Velvet Bed", ar: "سرير مخملي ملكي" },
@@ -151,15 +151,18 @@ const createProducts = (): Product[] => {
         { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
       ],
       imgs: [
-  "/sofa-2.avif",
-  "/sofa-2-1.avif",
-  "/sofa-2-2.avif",
-  "/sofa-1.avif",
-  "/sofa-1-2.avif",
-  "/sofa-1-3.avif",
-  "/sofa-1-4.avif",
-  "/sofa-1-5.avif"
-            
+        [
+          "/sofa-2.avif",
+          "/sofa-2-1.avif",
+          "/sofa-2-2.avif"
+        ],
+        [
+          "/sofa-1.avif",
+          "/sofa-1-2.avif",
+          "/sofa-1-3.avif",
+          "/sofa-1-4.avif",
+          "/sofa-1-5.avif"
+        ]
       ],
       basePrice: 2200
     },
@@ -201,28 +204,32 @@ const createProducts = (): Product[] => {
       basePrice: 1500
     },
     "tv-units": {
-       name: [
-        { en: "Sofa 2 Seats", ar: "كنبة بمقعدين" },
-        { en: "Sofa 3 Seats", ar: "كنبة بثلاثة مقاعد" },
-        { en: "Sofa 3 Seats", ar: "كنبة بثلاثة مقاعد" }
+      name: [
+        { en: "TV Unit 1", ar: "وحدة تلفزيون 1" },
+        { en: "TV Unit 2", ar: "وحدة تلفزيون 2" },
+        { en: "TV Unit 3", ar: "وحدة تلفزيون 3" }
       ],
       desc: [
-        { en: "Premium luxury 2-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بمقعدين مع تصميم أنيق وراحة استثنائية." },
-        { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." },
-        { en: "Premium luxury 3-seater sofa with elegant design and exceptional comfort.", ar: "كنبة فاخرة بثلاثة مقاعد مع تصميم أنيق وراحة استثنائية." }
+        { en: "Premium luxury TV unit with elegant design and exceptional craftsmanship.", ar: "وحدة تلفزيون فاخرة مع تصميم أنيق وحرفية استثنائية." },
+        { en: "Modern TV console with clean lines and sophisticated finish.", ar: "خزانة وسائط عصرية بخطوط نظيفة وتشطيب متطور." },
+        { en: "Contemporary media unit combining style and functionality.", ar: "وحدة وسائط معاصرة تجمع بين الأسلوب والوظيفة." }
       ],
       imgs: [
-        
-          "/tv-1.avif",
-          "/tv-1-2.avif",
-          "/tv-1-3.avif",
-          "/tv-2-1.avif",
-          "/tv-2.avif",
-          "/tv-3-1.avif",
-          "/tv-3.avif",
-        
+        [
+          "/tvunit-1.avif",
+          "/tvunit-1-2.avif",
+          "/tvunit-1-3.avif"
+        ],
+        [
+          "/tvunit-2.avif",
+          "/tvunit-2-1.avif"
+        ],
+        [
+          "/tvunit-3.avif",
+          "/tvunit-3-1.avif"
+        ]
       ],
-      basePrice: 2200
+      basePrice: 1100
     },
     office: {
       name: [
@@ -448,8 +455,9 @@ const createProducts = (): Product[] => {
   Object.keys(designTemplates).forEach((colId) => {
     const template = designTemplates[colId];
 
-    // For sofas, number of items equals number of image-sets; for others, generate 20 items
-    const itemCount = colId === 'sofas' && Array.isArray(template.imgs[0]) ? template.imgs.length : (colId === 'sofas' ? 1 : 20);
+    // For sofas and tv-units, number of items equals number of image-sets; for others, generate 20 items
+    const isMultiImageCollection = (colId === 'sofas' || colId === 'tv-units') && Array.isArray(template.imgs[0]);
+    const itemCount = isMultiImageCollection ? template.imgs.length : 20;
 
     // Generate items per collection
     for (let i = 0; i < itemCount; i++) {
@@ -457,7 +465,7 @@ const createProducts = (): Product[] => {
       const descObj = template.desc[i % template.desc.length];
       // support imgs being either array of strings or array of image-sets (arrays)
       let image: string;
-      if (colId === 'sofas' && Array.isArray(template.imgs[0])) {
+      if (isMultiImageCollection) {
         image = template.imgs[i % template.imgs.length][0];
       } else {
         image = template.imgs[i % template.imgs.length];
@@ -513,7 +521,7 @@ const createProducts = (): Product[] => {
         oldPrice,
         rating,
         image,
-        images: colId === 'sofas' && Array.isArray(template.imgs[0]) ? template.imgs[i % template.imgs.length] : (colId === 'sofas' ? (Array.isArray(template.imgs) ? (template.imgs as any) : undefined) : undefined),
+        images: isMultiImageCollection ? template.imgs[i % template.imgs.length] : undefined,
         category: colId,
         saleBadge,
         isNew,
