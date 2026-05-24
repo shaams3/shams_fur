@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "shams",
+  "name": "shamsfurniture",
   "compatibility_date": "2026-05-23",
   "observability": {
     "enabled": true
